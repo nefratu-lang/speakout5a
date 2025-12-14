@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Chronicles of the Deep - A2 Past Simple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              // THEME OVERHAUL: "Tactical Navy"
+              // We map 'ocean' to dark slate/navy tones for the base UI
+              ocean: {
+                50: '#0f172a',  // Very Dark Blue (Background)
+                100: '#1e293b', // Dark Blue-Grey (Cards)
+                200: '#334155', // Borders
+                300: '#475569', // Text Muted
+                400: '#64748b', // Text Secondary
+                500: '#3b82f6', // Primary Action (Blue)
+                600: '#2563eb', // Hover Action
+                700: '#1d4ed8', // Active
+                800: '#0f172a', // Darkest
+                900: '#020617', // Black-ish
+              },
+              // Gold for ranks and achievements
+              gold: {
+                100: '#fef9c3',
+                200: '#fde047',
+                300: '#facc15',
+                400: '#eab308',
+                500: '#ca8a04',
+                600: '#a16207',
+              },
+              // Danger/Alert red
+              alert: {
+                500: '#ef4444',
+                900: '#7f1d1d'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Merriweather', 'serif'],
+              mono: ['JetBrains Mono', 'monospace'], // Added for "Terminal" feel
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #020617; /* Hard dark mode bg */
+        color: #e2e8f0; /* Light text default */
+      }
+      .serif {
+        font-family: 'Merriweather', serif;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+      /* Custom scrollbar for Dark Mode */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #3b82f6; 
+        border-radius: 3px;
+      }
+      
+      /* CRT Screen Effect Animation */
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+      .scanline::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-950 text-slate-100 antialiased overflow-hidden h-[100dvh]">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
