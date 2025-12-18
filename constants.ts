@@ -168,4 +168,50 @@ export const SLIDES: SlideData[] = [
             { id: 9, category: "OBSERVATION", question: "_______ did the team stop?", context: "Debrief: 'The high winds forced us to abort.'", options: ["Where", "Why", "When"], correct: "Why" },
             { id: 10, category: "COMMAND CHECK", question: "_______ they complete the target mission at 0400 hours?", context: "Final Log: mission end time was in the past. Response: 'Yes, sir.'", options: ["Do", "Did", "Were"], correct: "Did" },
             { id: 11, category: "REPORT FAILURE", question: "The recruit _______ listen to the order.", context: "Infraction: A mistake happened during training.", options: ["didn't", "don't", "no"], correct: "didn't" },
-            { id: 12, category: "INVESTIGATION", question: "_______ did you call for help?", context: "Emergency: 'Radio cal
+            { id: 12, category: "INVESTIGATION", question: "_______ did you call for help?", context: "Emergency: 'Radio call went out at 0300 hours.'", options: ["What", "Why", "When"], correct: "When" },
+            { id: 13, category: "INVESTIGATION", question: "_______ sailor cleaned the deck?", context: "Inspection: 'It was Mustafa who did it.'", options: ["Which", "Who", "What"], correct: "Which" },
+            { id: 14, category: "COMMAND CHECK", question: "_______ it rain last night?", context: "Weather log: Check previous conditions.", options: ["Did", "Was", "Does"], correct: "Did" },
+            { id: 15, category: "ERROR CORRECTION", question: "Did he _______ the order?", context: "Verification: Ensure he received it correctly.", options: ["understood", "understand", "understands"], correct: "understand" }
+        ]
+    }
+  },
+  {
+      id: 14,
+      type: SlideType.CLASSROOM_GAME,
+      title: "OPERATIONAL TRIVIA",
+      subtitle: "CLASSROOM CHALLENGE: RECAP GRID",
+      content: {
+          instruction: "Teacher: Select a tile for the class to answer together.",
+          categories: [
+              {
+                  name: "ACTIONS (+ed)",
+                  questions: [
+                      { points: 100, q: "Past form of 'START'?", a: "STARTED" },
+                      { points: 200, q: "Past form of 'STUDY'?", a: "STUDIED" },
+                      { points: 300, q: "Past form of 'SWAP'?", a: "SWAPPED" },
+                      { points: 400, q: "Past form of 'BELIEVE'?", a: "BELIEVED" }
+                  ]
+              },
+              {
+                  name: "QUESTIONS",
+                  questions: [
+                      { points: 100, q: "Ask: 'Sen gittin mi?'", a: "Did you go?" },
+                      { points: 200, q: "Ask: 'O ne zaman geldi?'", a: "When did he arrive?" },
+                      { points: 300, q: "Ask: 'Onlar niye durdu?'", a: "Why did they stop?" },
+                      { points: 400, q: "Ask: 'Hangi gemiyi gördün?'", a: "Which ship did you see?" }
+                  ]
+              },
+              {
+                  name: "NEGATIVES",
+                  questions: [
+                      { points: 100, q: "Negative of 'I worked'?", a: "I didn't work." },
+                      { points: 200, q: "Negative of 'She cleaned'?", a: "She didn't clean." },
+                      { points: 300, q: "Correct this: 'He didn't liked it.'", a: "He didn't like it." },
+                      { points: 400, q: "Negative of 'They arrived'?", a: "They didn't arrive." }
+                  ]
+              }
+          ]
+      }
+  },
+  { id: 15, type: SlideType.DEBRIEF, title: "UNIT COMPLETE", subtitle: "MISSION ACCOMPLISHED", content: { checklist: [{ text: "STORYTELLING", reflection: "ACCOMPLISHED" }, { text: "GRAMMAR DECODING", reflection: "SUCCESS" }, { text: "TACTICAL SIMULATION", reflection: "PASSED" }, { text: "FINAL RECAP", reflection: "SECURED" }] } }
+];
