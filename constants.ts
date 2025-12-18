@@ -1,7 +1,7 @@
 
 import { SlideType, SlideData } from './types';
 
-// Root dizindeki 'media' klasörüne işaret eden yollar
+// Medya dosyaları için root dizindeki 'media' klasörü kullanılıyor
 const imgDecision = 'media/reading1.jpg';
 const imgArrival = 'media/reading2.jpg';
 const imgTraining = 'media/reading3.jpg';
@@ -100,8 +100,8 @@ export const SLIDES: SlideData[] = [
     text: TEXT_SCENE_4 
   } },
   { id: 6, type: SlideType.SCRAMBLE, title: "LOGBOOK DATA CORRUPTION", subtitle: "OPERATION: CHRONOS", content: { instruction: "Commander! Mustafa's logbook fell apart. Re-order the segments to restore the timeline.", items: [{ id: 1, parts: ["Mustafa decided", "to join", "the Navy."], correctSentence: "1" }, { id: 2, parts: ["He passed", "the MSÜ exams", "successfully."], correctSentence: "2" }, { id: 3, parts: ["He completed", "the sports", "interview."], correctSentence: "3" }, { id: 4, parts: ["He travelled", "to Yalova", "School."], correctSentence: "4" }, { id: 5, parts: ["He entered", "the campus", "gate."], correctSentence: "5" }, { id: 6, parts: ["He cleaned", "dorms during", "training."], correctSentence: "6" }, { id: 7, parts: ["He swapped", "the wrong", "uniform (XL)."], correctSentence: "7" }, { id: 8, parts: ["Finally,", "he took", "the oath."], correctSentence: "8" }] } },
-  { id: 7, type: SlideType.GRAMMAR_ANALYSIS, title: "MISSION ANALYSIS", subtitle: "ACTION PATTERNS (REGULAR)", content: { cards: [{ title: "General Rule", suffixDisplay: "+ed", rule: "For most verbs, simply add -ed to the end.", contextSentence: "Mustafa **wanted** to join the Navy.", examples: [{ base: "want", suffix: "ed" }, { base: "clean", suffix: "ed" }] }, { title: "Ends in 'e'", suffixDisplay: "+d", rule: "If the verb ends in 'e', just add -d.", contextSentence: "He **arrived** at the school gate.", examples: [{ base: "arrive", suffix: "d" }, { base: "decide", suffix: "d" }] }, { title: "Ends in 'y'", suffixDisplay: "-y +ied", rule: "Consonant + y? Change 'y' to 'i' and add -ed.", contextSentence: "He **studed** hard for the exams.", examples: [{ base: "study", suffix: "ied" }, { base: "try", suffix: "ied" }] }, { title: "Double Consonant", suffixDisplay: "Double", rule: "Short verbs (CVC)? Double the last letter.", contextSentence: "He **travelled** to Yalova.", examples: [{ base: "travel", suffix: "led" }, { base: "stop", suffix: "ped" }] }] } },
-  { id: 8, type: SlideType.VERB_CHALLENGE, title: "TARGET ACQUISITION", subtitle: "OFFICIAL ACTION LOG", content: { verbs: [{ base: "STUDY", past: "STUDIED", type: "regular" }, { base: "ARRIVE", past: "ARRIVED", type: "regular" }, { base: "CLEAN", past: "CLEANED", type: "regular" }, { base: "LISTEN", past: "LISTENED", type: "regular" }, { base: "WORK", past: "WORKED", type: "regular" }, { base: "SWAP", BARBAROS_SWAPPED: "SWAPPED", type: "regular" }, { base: "FIX", past: "FIXED", type: "regular" }, { base: "LOOK", past: "LOOKED", type: "regular" }, { base: "STAY", past: "STAYED", type: "regular" }, { base: "START", past: "STARTED", type: "regular" }, { base: "WALK", past: "WALKED", type: "regular" }, { base: "WATCH", past: "WATCHED", type: "regular" }, { base: "PLAY", past: "PLAYED", type: "regular" }, { base: "PASS", past: "PASSED", type: "regular" }, { base: "EXERCISE", past: "EXERCISED", type: "regular" }] } },
+  { id: 7, type: SlideType.GRAMMAR_ANALYSIS, title: "MISSION ANALYSIS", subtitle: "ACTION PATTERNS (REGULAR)", content: { cards: [{ title: "General Rule", suffixDisplay: "+ed", rule: "For most verbs, simply add -ed to the end.", contextSentence: "Mustafa **wanted** to join the Navy.", examples: [{ base: "want", suffix: "ed" }, { base: "clean", suffix: "ed" }] }, { title: "Ends in 'e'", suffixDisplay: "+d", rule: "If the verb ends in 'e', just add -d.", contextSentence: "He **arrived** at the school gate.", examples: [{ base: "arrive", suffix: "d" }, { base: "decide", suffix: "d" }] }, { title: "Ends in 'y'", suffixDisplay: "-y +ied", rule: "Consonant + y? Change 'y' to 'i' and add -ed.", contextSentence: "He **studied** hard for the exams.", examples: [{ base: "study", suffix: "ied" }, { base: "try", suffix: "ied" }] }, { title: "Double Consonant", suffixDisplay: "Double", rule: "Short verbs (CVC)? Double the last letter.", contextSentence: "He **travelled** to Yalova.", examples: [{ base: "travel", suffix: "led" }, { base: "stop", suffix: "ped" }] }] } },
+  { id: 8, type: SlideType.VERB_CHALLENGE, title: "TARGET ACQUISITION", subtitle: "OFFICIAL ACTION LOG", content: { verbs: [{ base: "STUDY", past: "STUDIED", type: "regular" }, { base: "ARRIVE", past: "ARRIVED", type: "regular" }, { base: "CLEAN", past: "CLEANED", type: "regular" }, { base: "LISTEN", past: "LISTENED", type: "regular" }, { base: "WORK", past: "WORKED", type: "regular" }, { base: "SWAP", past: "SWAPPED", type: "regular" }, { base: "FIX", past: "FIXED", type: "regular" }, { base: "LOOK", past: "LOOKED", type: "regular" }, { base: "STAY", past: "STAYED", type: "regular" }, { base: "START", past: "STARTED", type: "regular" }, { base: "WALK", past: "WALKED", type: "regular" }, { base: "WATCH", past: "WATCHED", type: "regular" }, { base: "PLAY", past: "PLAYED", type: "regular" }, { base: "PASS", past: "PASSED", type: "regular" }, { base: "EXERCISE", past: "EXERCISED", type: "regular" }] } },
   { id: 9, type: SlideType.DAILY_REPORT, title: "THE DAILY REPORT", subtitle: "CADET'S LOG ENTRY", content: { instruction: "Fill in the gaps with the Past Simple form.", segments: [{ type: 'text', value: "Yesterday was a busy day.\n\nIn the morning, we " }, { type: 'gap', id: 1, hint: "clean", answer: "cleaned" }, { type: 'text', value: " our dorms. Then, the commander " }, { type: 'gap', id: 2, hint: "talk", answer: "talked" }, { type: 'text', value: " to us. We " }, { type: 'gap', id: 3, hint: "listen", answer: "listened" }, { type: 'text', value: " carefully. After lunch, I " }, { type: 'gap', id: 4, hint: "exercise", answer: "exercised" }, { type: 'text', value: " at the sports field. In the evening, I " }, { type: 'gap', id: 5, hint: "call", answer: "called" }, { type: 'text', value: " my family. Finally, I " }, { type: 'gap', id: 6, hint: "watch", answer: "watched" }, { type: 'text', value: " a video." }] } },
   { id: 10, type: SlideType.READING_CHALLENGE, title: "THE LEGENDARY SAT: NAMIK EKİN", subtitle: "OPERATION: IRON MAN", content: { 
     profileImage: "https://im.haberturk.com/2016/10/28/ver1477647225/1316493_620x410.jpg", 
@@ -204,19 +204,5 @@ export const SLIDES: SlideData[] = [
           ]
       }
   },
-  { 
-    id: 15, 
-    type: SlideType.DEBRIEF, 
-    title: "MISSION COMPLETE", 
-    subtitle: "COMMANDER'S FINAL SUMMARY", 
-    content: { 
-      recapItems: [
-        { label: "Mustafa's Journey", summary: "We followed a civilian as he passed exams, entered the campus, and became a sailor using **Past Simple** verbs." },
-        { label: "Grammar Intel", summary: "We decoded the **-ed** engine: Affirmative sentences, **didn't** for negatives, and **Did** for Wh- questions." },
-        { label: "Legend Dossier", summary: "We verified the record-breaking life of **Namık Ekin**, applying our knowledge to a real naval hero." },
-        { label: "Time Markers", summary: "We mastered tactical time: **Yesterday, two days ago, last week,** and **last month** to mark past actions." }
-      ],
-      closingMessage: "Petty Officer Candidates, your training for Unit 5 is over. You are now cleared for duty. Dismissed!"
-    } 
-  }
+  { id: 15, type: SlideType.DEBRIEF, title: "UNIT COMPLETE", subtitle: "MISSION ACCOMPLISHED", content: { checklist: [{ text: "STORYTELLING", reflection: "ACCOMPLISHED" }, { text: "GRAMMAR DECODING", reflection: "SUCCESS" }, { text: "TACTICAL SIMULATION", reflection: "PASSED" }, { text: "FINAL RECAP", reflection: "SECURED" }] } }
 ];

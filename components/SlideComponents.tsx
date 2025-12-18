@@ -5,7 +5,10 @@ import { SlideData, Vocabulary, VerbChallengeItem, ScrambleItem, DebriefItem } f
 // --- COMPONENT: Hunter Verb ---
 const HunterVerb: React.FC<{ word: string; onFound: () => void }> = ({ word, onFound }) => {
     const [found, setFound] = useState(false);
-    useEffect(() => { setFound(false); }, [word]);
+    useEffect(() => {
+        setFound(false);
+    }, [word]);
+
     const handleClick = () => {
         if (!found) {
             setFound(true);
@@ -13,7 +16,14 @@ const HunterVerb: React.FC<{ word: string; onFound: () => void }> = ({ word, onF
         }
     };
     return (
-        <span onClick={handleClick} className={`cursor-pointer transition-all duration-300 px-0.5 rounded-sm inline-block ${found ? "bg-green-600 text-white font-black shadow-[0_0_12px_rgba(22,163,74,0.6)] scale-110" : "text-slate-800 font-normal border-b-2 border-transparent hover:border-slate-300"}`}>
+        <span 
+            onClick={handleClick}
+            className={`cursor-pointer transition-all duration-300 px-0.5 rounded-sm inline-block ${
+                found 
+                ? "bg-green-600 text-white font-black shadow-[0_0_12px_rgba(22,163,74,0.6)] scale-110" 
+                : "text-slate-800 font-normal border-b-2 border-transparent hover:border-slate-300"
+            }`}
+        >
             {word}
         </span>
     );
@@ -26,7 +36,9 @@ const ReadingParser: React.FC<{ text: string; onVerbFound: () => void }> = ({ te
     return (
         <span className="leading-relaxed">
             {parts.map((part, index) => {
-                if (index % 2 === 1) return <HunterVerb key={index} word={part} onFound={onVerbFound} />;
+                if (index % 2 === 1) {
+                    return <HunterVerb key={index} word={part} onFound={onVerbFound} />;
+                }
                 return <span key={index} className="font-normal">{part}</span>;
             })}
         </span>
@@ -43,12 +55,7 @@ export const CoverSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                   <source src={data.content.videoBg} type="video/mp4" />
               </video>
           ) : (
-              <img 
-                src={data.content.backgroundImage} 
-                alt="Cover" 
-                className="w-full h-full object-cover opacity-20"
-                onError={(e) => console.error("Cover image error:", data.content.backgroundImage)}
-              />
+              <img src={data.content.backgroundImage} alt="Cover" className="w-full h-full object-cover opacity-20" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/80"></div>
        </div>
@@ -166,10 +173,6 @@ export const ReadingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
             src={data.content.backgroundImage} 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[8s]" 
             alt="Visual Recon" 
-            onError={(e) => {
-                console.error("Image missing at", data.content.backgroundImage);
-                e.currentTarget.style.display = 'none';
-            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20"></div>
           <div className="absolute bottom-6 right-6 text-white text-[10px] font-mono opacity-50 uppercase tracking-widest">Visual Recon Area // Intel-V5</div>
