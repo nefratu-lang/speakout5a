@@ -1,1 +1,4 @@
-// Asset declarations are not needed when using string paths.
+declare module "*.jpg";
+declare module "*.png";
+declare module "*.svg";
+declare module "*.mp4";
