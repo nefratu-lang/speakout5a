@@ -4,14 +4,18 @@ import { SlideData, Vocabulary, VerbChallengeItem, ScrambleItem, DebriefItem } f
 
 /**
  * HELPER: Resolves media paths to absolute URLs based on origin.
- * This ensures Vercel/CDN environments correctly find assets in /components/media/
+ * This ensures assets are pulled from the root-level 'media' folder.
  */
 const resolveMediaPath = (path: string): string => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
-  // Standardize path: remove leading dots or slashes
-  const cleanPath = path.replace(/^\.\//, '').replace(/^\//, '');
-  // Force resolution relative to current origin (root of the site)
+  
+  // Clean path: remove any relative prefixes and assume it starts from 'media/'
+  const cleanPath = path
+    .replace(/^\.\//, '')
+    .replace(/^\//, '')
+    .replace(/^components\//, '');
+    
   return `${window.location.origin}/${cleanPath}`;
 };
 
@@ -64,7 +68,7 @@ export const CoverSlide: React.FC<{ data: SlideData }> = ({ data }) => {
                 src={imageUrl} 
                 alt="Cover" 
                 className="w-full h-full object-cover opacity-20"
-                onError={(e) => console.error("Cover Image failed:", imageUrl)}
+                onError={(e) => console.error("Cover image error at:", imageUrl)}
               />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/80"></div>
@@ -186,11 +190,10 @@ export const ReadingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
             src={imageUrl} 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[8s]" 
             alt="Visual Recon" 
-            onLoad={() => console.log("Success: Image loaded from origin:", imageUrl)}
+            onLoad={() => console.log("Success: Image found at", imageUrl)}
             onError={(e) => {
-                console.error("Critical Error: Asset missing at:", imageUrl);
-                // Fallback to a solid naval blue if image fails
-                e.currentTarget.classList.add('hidden');
+                console.error("Critical: Image missing at", imageUrl);
+                e.currentTarget.style.display = 'none';
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/20"></div>
