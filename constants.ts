@@ -2,10 +2,12 @@
 import { SlideType, SlideData } from './types';
 
 // Thematic Images for Visual Recon Area
-const imgDecision = './components/media/reading1.jpg';
-const imgArrival = './components/media/reading2.jpg';
-const imgTraining = './components/media/reading3.jpg';
-const imgOath = './components/media/reading4.jpg';
+// Using root-relative paths to ensure Vercel serves them correctly from the root directory
+const imgDecision = 'components/media/reading1.jpg';
+const imgArrival = 'components/media/reading2.jpg';
+const imgTraining = 'components/media/reading3.jpg';
+const imgOath = 'components/media/reading4.jpg';
+const videoBgFile = 'components/media/gemiler.mp4';
 
 export const LESSON_TITLE = "UNIT 5: FROM CANDIDATE TO SAILOR";
 
@@ -15,7 +17,7 @@ const TEXT_SCENE_3 = `The 'Adaptation Training' **started**. Mustafa **worked** 
 const TEXT_SCENE_4 = `Finally, the uniforms **arrived**. But there **was** a funny problem! Mustafa's uniform **was** too big (XL), and his friend's uniform **was** too small (S). Nobody **had** the right size! It **was** chaotic. Everyone **swapped** jackets and trousers. They **fixed** the problem together. Then, they **looked** perfect. They **took** the oath and **became** sailors.`;
 
 export const SLIDES: SlideData[] = [
-  { id: 0, type: SlideType.COVER, title: "PHASE 1: THE DECISION", subtitle: "Preparation & Exams", content: { backgroundImage: imgDecision, videoBg: './components/media/gemiler.mp4' } },
+  { id: 0, type: SlideType.COVER, title: "PHASE 1: THE DECISION", subtitle: "Preparation & Exams", content: { backgroundImage: imgDecision, videoBg: videoBgFile } },
   { 
     id: 1, 
     type: SlideType.OBJECTIVES, 
