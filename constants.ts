@@ -1,17 +1,15 @@
 import { SlideType, SlideData } from './types';
 
-// Görselleri ve Videoyu IMPORT ediyoruz
-// (Not: Dosyaların 'media' klasöründe olduğunu varsayıyoruz, 'components/media' değil)
+// --- ÖNEMLİ: Görselleri ve Videoyu IMPORT ediyoruz ---
+// Dosyaların 'media' klasöründe ve constants.ts ile yan yana olduğunu varsayıyoruz.
 import imgDecision from './media/reading1.jpg';
 import imgArrival from './media/reading2.jpg';
 import imgTraining from './media/reading3.jpg';
 import imgOath from './media/reading4.jpg';
 
-// Video dosyanın adı kodda 'gemiler.mp4', senin mesajında 'gemi.mp4'.
-// Lütfen dosya adının tam olarak ne olduğunu kontrol et ve aşağıyı ona göre düzelt.
-// Eğer dosya adı 'gemiler.mp4' ise:
+// Video dosyanın adı klasörde neyse tam olarak onu yazmalısın.
+// Kodda 'gemiler.mp4' görünüyor. Eğer dosya adı 'gemi.mp4' ise aşağıyı düzelt.
 import videoGemiler from './media/gemiler.mp4'; 
-// Eğer dosya yoksa veya import hatası alırsan bu satırı ve aşağıda kullanımını geçici olarak kaldır.
 
 export const LESSON_TITLE = "UNIT 5: FROM CANDIDATE TO SAILOR";
 
@@ -27,8 +25,8 @@ export const SLIDES: SlideData[] = [
     title: "PHASE 1: THE DECISION", 
     subtitle: "Preparation & Exams", 
     content: { 
-      backgroundImage: imgDecision, // String yerine import ettiğimiz değişkeni kullanıyoruz
-      videoBg: videoGemiler         // Video değişkeni
+      backgroundImage: imgDecision, // Import edilen değişken
+      videoBg: videoGemiler         // Import edilen video
     } 
   },
   { 
@@ -58,7 +56,7 @@ export const SLIDES: SlideData[] = [
     } 
   },
   { id: 2, type: SlideType.READING, title: "PHASE 1: THE DECISION", subtitle: "Preparation & Exams", content: { 
-    backgroundImage: imgDecision, // Güncellendi
+    backgroundImage: imgDecision, // Değişken kullanıldı
     phase: 1, 
     totalPhases: 4, 
     vocabulary: [
@@ -72,7 +70,7 @@ export const SLIDES: SlideData[] = [
     text: TEXT_SCENE_1 
   } },
   { id: 3, type: SlideType.READING, title: "PHASE 2: THE ARRIVAL", subtitle: "Yalova Naval School", content: { 
-    backgroundImage: imgArrival, // Güncellendi
+    backgroundImage: imgArrival, // Değişken kullanıldı
     phase: 2, 
     totalPhases: 4, 
     vocabulary: [
@@ -86,7 +84,7 @@ export const SLIDES: SlideData[] = [
     text: TEXT_SCENE_2 
   } },
   { id: 4, type: SlideType.READING, title: "PHASE 3: TRANSFORMATION", subtitle: "Intibak Training", content: { 
-    backgroundImage: imgTraining, // Güncellendi
+    backgroundImage: imgTraining, // Değişken kullanıldı
     phase: 3, 
     totalPhases: 4, 
     vocabulary: [
@@ -100,7 +98,7 @@ export const SLIDES: SlideData[] = [
     text: TEXT_SCENE_3 
   } },
   { id: 5, type: SlideType.READING, title: "PHASE 4: THE UNIFORM & OATH", subtitle: "A Funny Memory", content: { 
-    backgroundImage: imgOath, // Güncellendi
+    backgroundImage: imgOath, // Değişken kullanıldı
     phase: 4, 
     totalPhases: 4, 
     vocabulary: [
@@ -113,7 +111,7 @@ export const SLIDES: SlideData[] = [
     ], 
     text: TEXT_SCENE_4 
   } },
-  // ... Geri kalan kodlar aynı kalabilir ...
+  // ... Kodun geri kalanı aynı şekilde devam edebilir, sadece resim yollarını import ettiğimizden emin olduk ...
   { id: 6, type: SlideType.SCRAMBLE, title: "LOGBOOK DATA CORRUPTION", subtitle: "OPERATION: CHRONOS", content: { instruction: "Commander! Mustafa's logbook fell apart. Re-order the segments to restore the timeline.", items: [{ id: 1, parts: ["Mustafa decided", "to join", "the Navy."], correctSentence: "1" }, { id: 2, parts: ["He passed", "the MSÜ exams", "successfully."], correctSentence: "2" }, { id: 3, parts: ["He completed", "the sports", "interview."], correctSentence: "3" }, { id: 4, parts: ["He travelled", "to Yalova", "School."], correctSentence: "4" }, { id: 5, parts: ["He entered", "the campus", "gate."], correctSentence: "5" }, { id: 6, parts: ["He cleaned", "dorms during", "training."], correctSentence: "6" }, { id: 7, parts: ["He swapped", "the wrong", "uniform (XL)."], correctSentence: "7" }, { id: 8, parts: ["Finally,", "he took", "the oath."], correctSentence: "8" }] } },
   { id: 7, type: SlideType.GRAMMAR_ANALYSIS, title: "MISSION ANALYSIS", subtitle: "ACTION PATTERNS (REGULAR)", content: { cards: [{ title: "General Rule", suffixDisplay: "+ed", rule: "For most verbs, simply add -ed to the end.", contextSentence: "Mustafa **wanted** to join the Navy.", examples: [{ base: "want", suffix: "ed" }, { base: "clean", suffix: "ed" }] }, { title: "Ends in 'e'", suffixDisplay: "+d", rule: "If the verb ends in 'e', just add -d.", contextSentence: "He **arrived** at the school gate.", examples: [{ base: "arrive", suffix: "d" }, { base: "decide", suffix: "d" }] }, { title: "Ends in 'y'", suffixDisplay: "-y +ied", rule: "Consonant + y? Change 'y' to 'i' and add -ed.", contextSentence: "He **studied** hard for the exams.", examples: [{ base: "study", suffix: "ied" }, { base: "try", suffix: "ied" }] }, { title: "Double Consonant", suffixDisplay: "Double", rule: "Short verbs (CVC)? Double the last letter.", contextSentence: "He **travelled** to Yalova.", examples: [{ base: "travel", suffix: "led" }, { base: "stop", suffix: "ped" }] }] } },
   { id: 8, type: SlideType.VERB_CHALLENGE, title: "TARGET ACQUISITION", subtitle: "OFFICIAL ACTION LOG", content: { verbs: [{ base: "STUDY", past: "STUDIED", type: "regular" }, { base: "ARRIVE", past: "ARRIVED", type: "regular" }, { base: "CLEAN", past: "CLEANED", type: "regular" }, { base: "LISTEN", past: "LISTENED", type: "regular" }, { base: "WORK", past: "WORKED", type: "regular" }, { base: "SWAP", past: "SWAPPED", type: "regular" }, { base: "FIX", past: "FIXED", type: "regular" }, { base: "LOOK", past: "LOOKED", type: "regular" }, { base: "STAY", past: "STAYED", type: "regular" }, { base: "START", past: "STARTED", type: "regular" }, { base: "WALK", past: "WALKED", type: "regular" }, { base: "WATCH", past: "WATCHED", type: "regular" }, { base: "PLAY", past: "PLAYED", type: "regular" }, { base: "PASS", past: "PASSED", type: "regular" }, { base: "EXERCISE", past: "EXERCISED", type: "regular" }] } },
@@ -172,52 +170,4 @@ export const SLIDES: SlideData[] = [
             { id: 7, category: "LOGISTICS", question: "_______ specific tools did the technician select yesterday?", context: "Inventory: 'We selected the heavy drills.'", options: ["What", "Which", "Who"], correct: "What" },
             { id: 8, category: "OBSERVATION", question: "_______ did he see on the horizon?", context: "Radar: 'Mustafa spotted a small boat.'", options: ["What", "Why", "Where"], correct: "What" },
             { id: 9, category: "OBSERVATION", question: "_______ did the team stop?", context: "Debrief: 'The high winds forced us to abort.'", options: ["Where", "Why", "When"], correct: "Why" },
-            { id: 10, category: "COMMAND CHECK", question: "_______ they complete the target mission at 0400 hours?", context: "Final Log: mission end time was in the past. Response: 'Yes, sir.'", options: ["Do", "Did", "Were"], correct: "Did" },
-            { id: 11, category: "REPORT FAILURE", question: "The recruit _______ listen to the order.", context: "Infraction: A mistake happened during training.", options: ["didn't", "don't", "no"], correct: "didn't" },
-            { id: 12, category: "INVESTIGATION", question: "_______ did you call for help?", context: "Emergency: 'Radio call went out at 0300 hours.'", options: ["What", "Why", "When"], correct: "When" },
-            { id: 13, category: "INVESTIGATION", question: "_______ sailor cleaned the deck?", context: "Inspection: 'It was Mustafa who did it.'", options: ["Which", "Who", "What"], correct: "Which" },
-            { id: 14, category: "COMMAND CHECK", question: "_______ it rain last night?", context: "Weather log: Check previous conditions.", options: ["Did", "Was", "Does"], correct: "Did" },
-            { id: 15, category: "ERROR CORRECTION", question: "Did he _______ the order?", context: "Verification: Ensure he received it correctly.", options: ["understood", "understand", "understands"], correct: "understand" }
-        ]
-    }
-  },
-  {
-      id: 14,
-      type: SlideType.CLASSROOM_GAME,
-      title: "OPERATIONAL TRIVIA",
-      subtitle: "CLASSROOM CHALLENGE: RECAP GRID",
-      content: {
-          instruction: "Teacher: Select a tile for the class to answer together.",
-          categories: [
-              {
-                  name: "ACTIONS (+ed)",
-                  questions: [
-                      { points: 100, q: "Past form of 'START'?", a: "STARTED" },
-                      { points: 200, q: "Past form of 'STUDY'?", a: "STUDIED" },
-                      { points: 300, q: "Past form of 'SWAP'?", a: "SWAPPED" },
-                      { points: 400, q: "Past form of 'BELIEVE'?", a: "BELIEVED" }
-                  ]
-              },
-              {
-                  name: "QUESTIONS",
-                  questions: [
-                      { points: 100, q: "Ask: 'Sen gittin mi?'", a: "Did you go?" },
-                      { points: 200, q: "Ask: 'O ne zaman geldi?'", a: "When did he arrive?" },
-                      { points: 300, q: "Ask: 'Onlar niye durdu?'", a: "Why did they stop?" },
-                      { points: 400, q: "Ask: 'Hangi gemiyi gördün?'", a: "Which ship did you see?" }
-                  ]
-              },
-              {
-                  name: "NEGATIVES",
-                  questions: [
-                      { points: 100, q: "Negative of 'I worked'?", a: "I didn't work." },
-                      { points: 200, q: "Negative of 'She cleaned'?", a: "She didn't clean." },
-                      { points: 300, q: "Correct this: 'He didn't liked it.'", a: "He didn't like it." },
-                      { points: 400, q: "Negative of 'They arrived'?", a: "They didn't arrive." }
-                  ]
-              }
-          ]
-      }
-  },
-  { id: 15, type: SlideType.DEBRIEF, title: "UNIT COMPLETE", subtitle: "MISSION ACCOMPLISHED", content: { checklist: [{ text: "STORYTELLING", reflection: "ACCOMPLISHED" }, { text: "GRAMMAR DECODING", reflection: "SUCCESS" }, { text: "TACTICAL SIMULATION", reflection: "PASSED" }, { text: "FINAL RECAP", reflection: "SECURED" }] } }
-];
+            { id: 10, category: "COMMAND CHECK", question: "_______ they complete the target mission at 0400 hours?", context: "Final Log: mission end time was in the past. Re
