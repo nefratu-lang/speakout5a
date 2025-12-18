@@ -1,7 +1,5 @@
 import { SlideType, SlideData } from './types';
 
-// Yolları "/media/..." şeklinde "String" olarak ayarladık.
-// public klasöründeki dosyalara bu şekilde erişilir.
 const imgDecision = '/media/reading1.jpg';
 const imgArrival = '/media/reading2.jpg';
 const imgTraining = '/media/reading3.jpg';
@@ -10,7 +8,7 @@ const imgOath = '/media/reading4.jpg';
 export const LESSON_TITLE = "UNIT 5: FROM CANDIDATE TO SAILOR";
 
 export const SLIDES: SlideData[] = [
-  // SLIDE 1: COVER
+  // 1. KAPAK SAYFASI
   { 
     id: 0, 
     type: SlideType.COVER, 
@@ -18,10 +16,10 @@ export const SLIDES: SlideData[] = [
     subtitle: "Preparation & Exams", 
     content: { 
       backgroundImage: imgDecision, 
-      videoBg: '/media/gemiler.mp4' // Eğer mp4 dosyası public/media içindeyse çalışır
+      videoBg: '/media/gemiler.mp4' 
     } 
   },
-  // SLIDE 2: OBJECTIVES
+  // 2. HEDEFLER
   {
     id: 1,
     type: SlideType.OBJECTIVES,
@@ -43,7 +41,7 @@ export const SLIDES: SlideData[] = [
       ]
     }
   },
-  // SLIDE 3: ICE BREAKER
+  // 3. ISINMA
   {
     id: 2,
     type: SlideType.ICE_BREAKER,
@@ -52,7 +50,7 @@ export const SLIDES: SlideData[] = [
       question: "Why did you decide to join the Navy?"
     }
   },
-  // SLIDE 4: READING PART 1
+  // 4. OKUMA PARÇASI 1
   {
     id: 3,
     type: SlideType.READING,
@@ -66,7 +64,7 @@ export const SLIDES: SlideData[] = [
       ]
     }
   },
-  // SLIDE 5: READING PART 2
+  // 5. OKUMA PARÇASI 2
   {
     id: 4,
     type: SlideType.READING,
@@ -80,7 +78,7 @@ export const SLIDES: SlideData[] = [
       ]
     }
   },
-  // SLIDE 6: READING PART 3
+  // 6. OKUMA PARÇASI 3
   {
     id: 5,
     type: SlideType.READING,
@@ -94,7 +92,7 @@ export const SLIDES: SlideData[] = [
       ]
     }
   },
-  // SLIDE 7: GRAMMAR RECAP
+  // 7. DİL BİLGİSİ ÖZETİ
   {
     id: 6,
     type: SlideType.GRAMMAR_RECAP,
@@ -107,7 +105,7 @@ export const SLIDES: SlideData[] = [
       ]
     }
   },
-  // SLIDE 8: MISSION COMPLETE
+  // 8. KAPANIŞ
   {
     id: 7,
     type: SlideType.DEBRIEF,
