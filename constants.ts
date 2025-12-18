@@ -2,12 +2,12 @@
 import { SlideType, SlideData } from './types';
 
 // Thematic Images for Visual Recon Area
-// Using pure relative paths for better resolution across different environments
-const imgDecision = 'components/media/reading1.jpg';
-const imgArrival = 'components/media/reading2.jpg';
-const imgTraining = 'components/media/reading3.jpg';
-const imgOath = 'components/media/reading4.jpg';
-const videoBgFile = 'components/media/gemiler.mp4';
+// Bu yollar artık projenin en üst dizinindeki 'media' klasörünü işaret eder.
+const imgDecision = 'media/reading1.jpg';
+const imgArrival = 'media/reading2.jpg';
+const imgTraining = 'media/reading3.jpg';
+const imgOath = 'media/reading4.jpg';
+const videoBgFile = 'media/gemiler.mp4';
 
 export const LESSON_TITLE = "UNIT 5: FROM CANDIDATE TO SAILOR";
 
