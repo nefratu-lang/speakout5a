@@ -1,12 +1,11 @@
 import { SlideType, SlideData } from './types';
 
 // --- GÖRSEL VE VİDEO IMPORTLARI ---
-// Dosyaların 'media' klasöründe ve constants.ts ile aynı seviyede olduğunu varsayıyoruz.
 import imgDecision from './media/reading1.jpg';
 import imgArrival from './media/reading2.jpg';
 import imgTraining from './media/reading3.jpg';
 import imgOath from './media/reading4.jpg';
-// Eğer video dosyanın adı farklıysa burayı düzelt (örn: gemi.mp4)
+// Eğer dosyanın adı 'gemiler.mp4' ise bu doğru. Değilse düzelt.
 import videoGemiler from './media/gemiler.mp4'; 
 
 export const LESSON_TITLE = "UNIT 5: FROM CANDIDATE TO SAILOR";
