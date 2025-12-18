@@ -5,7 +5,6 @@ import { SlideData, Vocabulary, VerbChallengeItem, ScrambleItem, DebriefItem } f
 const HunterVerb: React.FC<{ word: string; onFound: () => void }> = ({ word, onFound }) => {
     const [found, setFound] = useState(false);
     
-    // Reset local found state when component re-mounts (on slide change)
     useEffect(() => {
         setFound(false);
     }, [word]);
@@ -166,7 +165,6 @@ export const ReadingSlide: React.FC<{ data: SlideData }> = ({ data }) => {
 
   const isComplete = foundCount === totalVerbs && totalVerbs > 0;
 
-  // Reset logic when slide changes
   useEffect(() => {
     setFoundCount(0);
     setActiveVocab(null);
@@ -564,8 +562,6 @@ export const ClassroomGameSlide: React.FC<{ data: SlideData }> = ({ data }) => {
     );
 };
 
-// --- FULL IMPLEMENTATIONS RESTORED ---
-
 export const GrammarAnalysisSlide: React.FC<{ data: SlideData }> = ({ data }) => {
     return (
         <div className="h-full w-full bg-slate-50 p-6 md:p-12 overflow-y-auto custom-scrollbar">
@@ -597,13 +593,78 @@ export const DailyReportSlide: React.FC<{ data: SlideData }> = ({ data }) => {
     );
 };
 
+// --- Reading Challenge Slide (Namik Ekin Oynatıcısı Dahil Edildi) ---
 export const ReadingChallengeSlide: React.FC<{ data: SlideData }> = ({ data }) => {
     const [inputs, setInputs] = useState<Record<number, string>>({});
     const [submitted, setSubmitted] = useState(false);
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const toggleAudio = () => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                audioRef.current.pause();
+            } else {
+                audioRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
     return (
         <div className="h-full flex flex-col bg-slate-950 text-slate-100 overflow-y-auto custom-scrollbar">
-            <div className="w-full bg-slate-900 border-b border-white/10 p-6 sticky top-0 z-20 flex justify-between items-center shadow-2xl"><h2 className="text-3xl font-black font-mono text-red-600 uppercase tracking-widest animate-pulse">{data.title}</h2><div className="flex items-center gap-4"><button onClick={() => setSubmitted(true)} className="bg-red-700 text-white font-black font-mono py-3 px-8 rounded-xl shadow-lg hover:bg-red-600 transition-all uppercase tracking-widest border-2 border-red-500">DECODE INTEL</button></div></div>
-            <div className="max-w-6xl mx-auto w-full p-6 md:p-12 space-y-10 pb-32"><div className="bg-slate-900/50 p-10 md:p-16 rounded-3xl font-serif text-2xl md:text-3xl leading-[2] text-slate-200 shadow-2xl border border-white/5 backdrop-blur-xl relative"><div className="absolute top-0 right-10 -translate-y-1/2 bg-red-600 text-white px-6 py-2 rounded-full font-mono font-black text-xs uppercase tracking-[0.5em]">Classified Log</div><h3 className="text-sm font-mono text-blue-500 mb-8 uppercase tracking-[0.4em] border-b border-white/10 pb-4">PART 1: THE NAMIK EKIN CHRONICLES</h3>{data.content.parts[0].textSegments.map((seg: string, i: number) => <React.Fragment key={i}>{seg}{data.content.parts[0].gaps.find((g: any) => g.id === i + 1) && <span className="relative group inline-block mx-2"><input type="text" value={inputs[i+1] || ""} onChange={(e) => setInputs({...inputs, [i+1]: e.target.value})} className={`w-48 bg-slate-950 border-b-4 text-center py-1 outline-none font-mono text-2xl transition-all font-black ${submitted ? (inputs[i+1]?.toLowerCase().trim() === data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer.toLowerCase() ? 'text-green-500 border-green-500 bg-green-900/20' : 'text-red-500 border-red-600 bg-red-900/20') : 'border-white/20 focus:border-blue-500'}`} />{submitted && inputs[i+1]?.toLowerCase().trim() !== data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer.toLowerCase() && <span className="absolute -bottom-10 left-0 text-xs text-red-500 font-mono font-black uppercase bg-slate-950 px-3 py-1.5 rounded-xl border border-red-900 shadow-2xl z-20 whitespace-nowrap">{data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer}</span>}</span>}</React.Fragment>)}</div></div>
+            <div className="w-full bg-slate-900 border-b border-white/10 p-6 sticky top-0 z-20 flex justify-between items-center shadow-2xl">
+                <h2 className="text-3xl font-black font-mono text-red-600 uppercase tracking-widest animate-pulse">{data.title}</h2>
+                <div className="flex items-center gap-4">
+                    {/* AUDIO PLAYER INTERFACE */}
+                    <div className="flex items-center bg-slate-800 rounded-full px-4 py-2 border border-blue-500/50 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                        <audio 
+                            ref={audioRef} 
+                            src="/media/namik.mp3" 
+                            onEnded={() => setIsPlaying(false)}
+                        />
+                        <button 
+                            onClick={toggleAudio}
+                            className="w-10 h-10 flex items-center justify-center bg-blue-600 hover:bg-blue-500 rounded-full transition-all active:scale-90"
+                        >
+                            {isPlaying ? (
+                                <span className="text-xl">||</span>
+                            ) : (
+                                <span className="text-xl ml-1">▶</span>
+                            )}
+                        </button>
+                        <div className="ml-3 hidden md:block">
+                            <p className="text-[9px] font-mono font-black text-blue-400 uppercase tracking-tighter">Audio Intelligence</p>
+                            <p className="text-[10px] font-mono text-white leading-none uppercase">namik_chronicles.mp3</p>
+                        </div>
+                    </div>
+                    
+                    <button onClick={() => setSubmitted(true)} className="bg-red-700 text-white font-black font-mono py-3 px-8 rounded-xl shadow-lg hover:bg-red-600 transition-all uppercase tracking-widest border-2 border-red-500">DECODE INTEL</button>
+                </div>
+            </div>
+            <div className="max-w-6xl mx-auto w-full p-6 md:p-12 space-y-10 pb-32">
+                <div className="bg-slate-900/50 p-10 md:p-16 rounded-3xl font-serif text-2xl md:text-3xl leading-[2] text-slate-200 shadow-2xl border border-white/5 backdrop-blur-xl relative">
+                    <div className="absolute top-0 right-10 -translate-y-1/2 bg-red-600 text-white px-6 py-2 rounded-full font-mono font-black text-xs uppercase tracking-[0.5em]">Classified Log</div>
+                    <h3 className="text-sm font-mono text-blue-500 mb-8 uppercase tracking-[0.4em] border-b border-white/10 pb-4">PART 1: THE NAMIK EKIN CHRONICLES</h3>
+                    {data.content.parts[0].textSegments.map((seg: string, i: number) => (
+                        <React.Fragment key={i}>
+                            {seg}{data.content.parts[0].gaps.find((g: any) => g.id === i + 1) && (
+                                <span className="relative group inline-block mx-2">
+                                    <input 
+                                        type="text" 
+                                        value={inputs[i+1] || ""} 
+                                        onChange={(e) => setInputs({...inputs, [i+1]: e.target.value})} 
+                                        className={`w-48 bg-slate-950 border-b-4 text-center py-1 outline-none font-mono text-2xl transition-all font-black ${submitted ? (inputs[i+1]?.toLowerCase().trim() === data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer.toLowerCase() ? 'text-green-500 border-green-500 bg-green-900/20' : 'text-red-500 border-red-600 bg-red-900/20') : 'border-white/20 focus:border-blue-500'}`} 
+                                    />
+                                    {submitted && inputs[i+1]?.toLowerCase().trim() !== data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer.toLowerCase() && (
+                                        <span className="absolute -bottom-10 left-0 text-xs text-red-500 font-mono font-black uppercase bg-slate-950 px-3 py-1.5 rounded-xl border border-red-900 shadow-2xl z-20 whitespace-nowrap">{data.content.parts[0].gaps.find((g:any)=>g.id===i+1).answer}</span>
+                                    )}
+                                </span>
+                            )}
+                        </React.Fragment>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
