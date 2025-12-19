@@ -1,7 +1,6 @@
 import { SlideType, SlideData } from './types';
 
-// MEDYA YOLLARI DÜZELTİLDİ (Sadece burası değişti)
-// public/media klasöründeki dosyalara erişmek için başına /media/ koyuyoruz.
+// MEDYA YOLLARI
 const imgDecision = '/media/reading1.jpg';
 const imgArrival = '/media/reading2.jpg';
 const imgTraining = '/media/reading3.jpg';
@@ -15,7 +14,6 @@ const TEXT_SCENE_3 = `The 'Adaptation Training' **started**. Mustafa **worked** 
 const TEXT_SCENE_4 = `Finally, the uniforms **arrived**. But there **was** a funny problem! Mustafa's uniform **was** too big (XL), and his friend's uniform **was** too small (S). Nobody **had** the right size! It **was** chaotic. Everyone **swapped** jackets and trousers. They **fixed** the problem together. Then, they **looked** perfect. They **took** the oath and **became** sailors.`;
 
 export const SLIDES: SlideData[] = [
-  // 1. Kapak Sayfası: Video yolu düzeltildi (/media/gemiler.mp4)
   { 
     id: 0, 
     type: SlideType.COVER, 
@@ -112,21 +110,66 @@ export const SLIDES: SlideData[] = [
   { id: 7, type: SlideType.GRAMMAR_ANALYSIS, title: "MISSION ANALYSIS", subtitle: "ACTION PATTERNS (REGULAR)", content: { cards: [{ title: "General Rule", suffixDisplay: "+ed", rule: "For most verbs, simply add -ed to the end.", contextSentence: "Mustafa **wanted** to join the Navy.", examples: [{ base: "want", suffix: "ed" }, { base: "clean", suffix: "ed" }] }, { title: "Ends in 'e'", suffixDisplay: "+d", rule: "If the verb ends in 'e', just add -d.", contextSentence: "He **arrived** at the school gate.", examples: [{ base: "arrive", suffix: "d" }, { base: "decide", suffix: "d" }] }, { title: "Ends in 'y'", suffixDisplay: "-y +ied", rule: "Consonant + y? Change 'y' to 'i' and add -ed.", contextSentence: "He **studied** hard for the exams.", examples: [{ base: "study", suffix: "ied" }, { base: "try", suffix: "ied" }] }, { title: "Double Consonant", suffixDisplay: "Double", rule: "Short verbs (CVC)? Double the last letter.", contextSentence: "He **travelled** to Yalova.", examples: [{ base: "travel", suffix: "led" }, { base: "stop", suffix: "ped" }] }] } },
   { id: 8, type: SlideType.VERB_CHALLENGE, title: "TARGET ACQUISITION", subtitle: "OFFICIAL ACTION LOG", content: { verbs: [{ base: "STUDY", past: "STUDIED", type: "regular" }, { base: "ARRIVE", past: "ARRIVED", type: "regular" }, { base: "CLEAN", past: "CLEANED", type: "regular" }, { base: "LISTEN", past: "LISTENED", type: "regular" }, { base: "WORK", past: "WORKED", type: "regular" }, { base: "SWAP", past: "SWAPPED", type: "regular" }, { base: "FIX", past: "FIXED", type: "regular" }, { base: "LOOK", past: "LOOKED", type: "regular" }, { base: "STAY", past: "STAYED", type: "regular" }, { base: "START", past: "STARTED", type: "regular" }, { base: "WALK", past: "WALKED", type: "regular" }, { base: "WATCH", past: "WATCHED", type: "regular" }, { base: "PLAY", past: "PLAYED", type: "regular" }, { base: "PASS", past: "PASSED", type: "regular" }, { base: "EXERCISE", past: "EXERCISED", type: "regular" }] } },
   { id: 9, type: SlideType.DAILY_REPORT, title: "THE DAILY REPORT", subtitle: "CADET'S LOG ENTRY", content: { instruction: "Fill in the gaps with the Past Simple form.", segments: [{ type: 'text', value: "Yesterday was a busy day.\n\nIn the morning, we " }, { type: 'gap', id: 1, hint: "clean", answer: "cleaned" }, { type: 'text', value: " our dorms. Then, the commander " }, { type: 'gap', id: 2, hint: "talk", answer: "talked" }, { type: 'text', value: " to us. We " }, { type: 'gap', id: 3, hint: "listen", answer: "listened" }, { type: 'text', value: " carefully. After lunch, I " }, { type: 'gap', id: 4, hint: "exercise", answer: "exercised" }, { type: 'text', value: " at the sports field. In the evening, I " }, { type: 'gap', id: 5, hint: "call", answer: "called" }, { type: 'text', value: " my family. Finally, I " }, { type: 'gap', id: 6, hint: "watch", answer: "watched" }, { type: 'text', value: " a video." }] } },
-  { id: 10, type: SlideType.READING_CHALLENGE, title: "THE LEGENDARY SAT: NAMIK EKİN", subtitle: "OPERATION: IRON MAN", content: { 
-    profileImage: "https://im.haberturk.com/2016/10/28/ver1477647225/1316493_620x410.jpg", 
-    profileName: "NAMIK EKİN", 
-    profileRank: "SAT COMMANDO (Rtd)", 
-    parts: [{ 
-      type: 'gap_fill', 
-      title: "PART 1: THE STORY", 
-      textSegments: [
-        "Namık Ekin ", " (be) born in Istanbul. During his childhood, he ", " (love) sports. When he was a teenager, he ", " (enter) the naval petty officer vocational school. He ", " (be) a very clever and positive student. He ", " (not / stay) idle; he ", " (exercise) all day. He ", " (win) many championships in gymnastics and weightlifting. After he ", " (finish) the school, he ", " (decide) to become a SAT commando.\n\nIn 1963, the SAT training ", " (start). It ", " (be) very hard and serious. Namık ", " (work) like a marathon runner. He ", " (walk) long distances with heavy bags and ", " (swim) for hours in cold water. He ", " (not / stop) when he was tired. He ", " (wait) for the orders and ", " (listen) to his commanders carefully. Finally, he ", " (complete) the course and ", " (become) the top student (kurs birincisi). He ", " (be) officially a SAT commando.\n\nHis military career ", " (be) very busy. In 1968, he ", " (join) the NATO 'Preveze' exercise. He ", " (be) very famous there because he ", " (take) the high-ranking NATO commanders as prisoners alone! Everyone ", " (laugh) in surprise, but it ", " (be) a great success. He ", " (travel) to many countries and ", " (learn) different tactics. He ", " (not / eat) unhealthy things like frozen desserts. He ", " (have) a special recipe for his energy and always ", " (stay) strong.\n\nAfter the Navy, Namık Ekin ", " (start) to try world records. He ", " (stay) underwater for 24 hours! He ", " (write) many books about his life and ", " (give) seminars to young recruits. Today, many college students ", " (follow) his YouTube channel and ", " (watch) his videos. He ", " (be) a hero for all sailors. He ", " (live) a legendary life because he ", " (believe) in himself and ", " hard all his life."
-      ], 
-      gaps: [
-        { id: 1, verb: "be", answer: "was" }, { id: 2, verb: "love", answer: "loved" }, { id: 3, verb: "enter", answer: "entered" }, { id: 4, verb: "be", answer: "was" }, { id: 5, verb: "not / stay", answer: "didn't stay" }, { id: 6, verb: "exercise", answer: "exercised" }, { id: 7, verb: "win", answer: "won" }, { id: 8, verb: "finish", answer: "finished" }, { id: 9, verb: "decide", answer: "decided" }, { id: 10, verb: "start", answer: "started" }, { id: 11, verb: "be", answer: "was" }, { id: 12, verb: "work", answer: "worked" }, { id: 13, verb: "walk", answer: "walked" }, { id: 14, verb: "swim", answer: "swam" }, { id: 15, verb: "not / stop", answer: "didn't stop" }, { id: 16, verb: "wait", answer: "waited" }, { id: 17, verb: "listen", answer: "listened" }, { id: 18, verb: "complete", answer: "completed" }, { id: 19, verb: "became", answer: "became" }, { id: 20, verb: "be", answer: "was" }, { id: 21, verb: "be", answer: "was" }, { id: 22, verb: "join", answer: "joined" }, { id: 23, verb: "be", answer: "was" }, { id: 24, verb: "take", answer: "took" }, { id: 25, verb: "laugh", answer: "laughed" }, { id: 26, verb: "be", answer: "was" }, { id: 27, verb: "travel", answer: "travelled" }, { id: 28, verb: "learn", answer: "learned" }, { id: 29, verb: "not / eat", answer: "didn't eat" }, { id: 30, verb: "have", answer: "had" }, { id: 31, verb: "stay", answer: "stayed" }, { id: 32, verb: "start", answer: "started" }, { id: 33, verb: "stay", answer: "stayed" }, { id: 34, verb: "write", answer: "wrote" }, { id: 35, verb: "give", answer: "gave" }, { id: 36, verb: "follow", answer: "follow" }, { id: 37, verb: "watch", answer: "watch" }, { id: 38, verb: "be", answer: "is" }, { id: 39, verb: "live", answer: "lives" }, { id: 40, verb: "believe", answer: "believed" }, { id: 41, verb: "work", answer: "worked" }
-      ] 
-    }] 
-  } },
+  { 
+    id: 10, 
+    type: SlideType.READING_CHALLENGE, 
+    title: "THE LEGENDARY SAT: NAMIK EKİN", 
+    subtitle: "OPERATION: IRON MAN", 
+    content: { 
+      profileImage: "https://im.haberturk.com/2016/10/28/ver1477647225/1316493_620x410.jpg", 
+      profileName: "NAMIK EKİN", 
+      profileRank: "SAT COMMANDO (Rtd)", 
+      parts: [{ 
+        type: 'gap_fill', 
+        title: "PART 1: THE STORY", 
+        textSegments: [
+          "Namık Ekin was born in Istanbul. During his childhood, he ", 
+          " (love) sports. When he was a teenager, he entered the naval petty officer vocational school. He ", 
+          " (be) a very clever and positive student. He didn't stay idle; he ", 
+          " (exercise) all day. He won many championships in gymnastics and weightlifting. After he ", 
+          " (finish) the school, he decided to become a SAT commando.\n\nIn 1963, the SAT training ", 
+          " (start). It was very hard and serious. Namık ", 
+          " (work) like a marathon runner. He walked long distances with heavy bags and ", 
+          " (swim) for hours in cold water. He didn't stop when he was tired. He ", 
+          " (wait) for the orders and listened to his commanders carefully. Finally, he ", 
+          " (complete) the course and became the top student (kurs birincisi). He ", 
+          " (be) officially a SAT commando.\n\nHis military career was very busy. In 1968, he ", 
+          " (join) the NATO 'Preveze' exercise. He was very famous there because he ", 
+          " (take) the high-ranking NATO commanders as prisoners alone! Everyone laughed in surprise, but it ", 
+          " (be) a great success. He travelled to many countries and ", 
+          " (learn) different tactics. He didn't eat unhealthy things like frozen desserts. He ", 
+          " (have) a special recipe for his energy and always stayed strong.\n\nAfter the Navy, Namık Ekin ", 
+          " (start) to try world records. He stayed underwater for 24 hours! He ", 
+          " (write) many books about his life and gave seminars to young recruits. Today, many college students ", 
+          " (follow) his YouTube channel and watch his videos. He ", 
+          " (be) a hero for all sailors. He lives a legendary life because he ", 
+          " (believe) in himself and worked hard all his life."
+        ], 
+        gaps: [
+          { id: 1, verb: "love", answer: "loved" }, 
+          { id: 2, verb: "be", answer: "was" }, 
+          { id: 3, verb: "exercise", answer: "exercised" }, 
+          { id: 4, verb: "finish", answer: "finished" }, 
+          { id: 5, verb: "start", answer: "started" }, 
+          { id: 6, verb: "work", answer: "worked" }, 
+          { id: 7, verb: "swim", answer: "swam" }, 
+          { id: 8, verb: "wait", answer: "waited" }, 
+          { id: 9, verb: "complete", answer: "completed" }, 
+          { id: 10, verb: "be", answer: "was" }, 
+          { id: 11, verb: "join", answer: "joined" }, 
+          { id: 12, verb: "take", answer: "took" }, 
+          { id: 13, verb: "be", answer: "was" }, 
+          { id: 14, verb: "learn", answer: "learned" }, 
+          { id: 15, verb: "have", answer: "had" }, 
+          { id: 16, verb: "start", answer: "started" }, 
+          { id: 17, verb: "write", answer: "wrote" }, 
+          { id: 18, verb: "follow", answer: "follow" }, 
+          { id: 19, verb: "be", answer: "is" }, 
+          { id: 20, verb: "believe", answer: "believed" }
+        ] 
+      }] 
+    } 
+  },
   {
     id: 11,
     type: SlideType.LEGEND_DOSSIER,
