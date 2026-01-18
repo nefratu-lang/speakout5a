@@ -45,8 +45,8 @@ const ReadingParser: React.FC<{ text: string; onVerbFound: () => void }> = ({ te
     );
 };
 
-// --- Cover Slide ---
-export const CoverSlide: React.FC<{ data: SlideData }> = ({ data }) => {
+// --- Cover Slide (GÜNCELLENDİ: onNext eklendi) ---
+export const CoverSlide: React.FC<{ data: SlideData; onNext?: () => void }> = ({ data, onNext }) => {
   return (
     <div className="h-full w-full flex flex-col items-center justify-center relative overflow-hidden bg-white text-slate-900">
        <div className="absolute inset-0 z-0">
@@ -65,7 +65,12 @@ export const CoverSlide: React.FC<{ data: SlideData }> = ({ data }) => {
           </div>
           <h1 className="text-4xl md:text-7xl font-mono font-black text-slate-900 mb-2 tracking-tighter uppercase drop-shadow-sm">{data.title}</h1>
           <p className="text-sm md:text-xl text-blue-700 font-bold font-mono tracking-[0.3em] uppercase">{data.subtitle}</p>
-          <div className="mt-12 md:mt-16 animate-pulse">
+          
+          {/* Tıklanabilir Alan */}
+          <div 
+            className="mt-12 md:mt-16 animate-pulse cursor-pointer hover:scale-110 transition-transform active:scale-95"
+            onClick={onNext}
+          >
             <p className="text-xs md:text-sm text-slate-500 font-mono mb-2">[ TAP TO INITIALIZE ]</p>
             <span className="text-2xl text-blue-900 font-bold">▼</span>
           </div>
@@ -721,111 +726,4 @@ export const LegendDossierSlide: React.FC<{ data: SlideData }> = ({ data }) => {
 
     const shuffledKeysMap = useMemo(() => {
         const map: Record<number, string[]> = {};
-        data.content.folders?.forEach((folder: any) => {
-            map[folder.id] = [...folder.keys].sort(() => Math.random() - 0.5);
-        });
-        return map;
-    }, [data.id]);
-
-    const handleSelect = (folderId: number, key: string, correct: string) => {
-        if (results[folderId] !== undefined) return;
-        setSelections(prev => ({ ...prev, [folderId]: key }));
-        setResults(prev => ({ ...prev, [folderId]: key === correct }));
-    };
-
-    return (
-        <div className="h-full w-full bg-[#0a0a0a] text-white p-6 overflow-y-auto custom-scrollbar">
-            <div className="max-w-7xl mx-auto space-y-10">
-                <div className="text-center">
-                    <h2 className="text-4xl md:text-6xl font-black font-mono text-amber-500 uppercase tracking-tighter">{data.title}</h2>
-                    <p className="text-slate-500 font-mono mt-2 uppercase tracking-widest">{data.content.instruction}</p>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
-                    {data.content.folders?.map((folder: any) => {
-                        const isAnswered = results[folder.id] !== undefined;
-                        const isCorrect = results[folder.id] === true;
-                        
-                        return (
-                            <div key={folder.id} className={`p-8 rounded-[2rem] border-4 transition-all ${isAnswered ? (isCorrect ? 'bg-green-950/20 border-green-600 shadow-[0_0_30px_rgba(22,163,74,0.3)]' : 'bg-red-950/20 border-red-600 animate-shake') : 'bg-slate-900 border-slate-800'}`}>
-                                <div className="flex justify-between items-center mb-6">
-                                    <span className="font-mono text-xs font-black text-slate-500 tracking-[0.3em] uppercase">{folder.label}</span>
-                                    {isAnswered && (isCorrect ? <span className="text-green-500 font-black font-mono text-xs animate-pulse">✓ VERIFIED</span> : <span className="text-red-500 font-black font-mono text-xs">⚠ ERROR: {folder.correct}</span>)}
-                                </div>
-                                <p className="text-xl md:text-2xl font-serif leading-relaxed mb-8 italic">
-                                    {folder.text.split('______').map((part: string, i: number) => (
-                                        <React.Fragment key={i}>
-                                            {part}
-                                            {i === 0 && <span className={`underline decoration-wavy px-2 font-black ${isAnswered ? (isCorrect ? 'text-green-400' : 'text-red-500 line-through') : 'text-amber-500'}`}>{selections[folder.id] || "______"}</span>}
-                                            {i === 0 && isAnswered && !isCorrect && <span className="text-green-400 font-black ml-1 animate-in zoom-in">[{folder.correct}]</span>}
-                                        </React.Fragment>
-                                    ))}
-                                </p>
-                                <div className="grid grid-cols-3 gap-3">
-                                    {shuffledKeysMap[folder.id]?.map((key: string) => (
-                                        <button
-                                            key={key}
-                                            onClick={() => handleSelect(folder.id, key, folder.correct)}
-                                            disabled={isAnswered}
-                                            className={`py-3 rounded-xl font-mono font-black text-sm transition-all ${
-                                                isAnswered
-                                                ? (key === folder.correct ? 'bg-green-600 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : (selections[folder.id] === key ? 'bg-red-600 opacity-50 scale-95' : 'bg-slate-800 opacity-20'))
-                                                : 'bg-slate-800 hover:bg-slate-700 active:scale-95'
-                                            }`}
-                                        >
-                                            {key}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-            <style>{`@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } } .animate-shake { animation: shake 0.4s ease-in-out; }`}</style>
-        </div>
-    );
-};
-
-// --- Debrief Slide ---
-export const DebriefSlide: React.FC<{ data: SlideData }> = ({ data }) => {
-  return (
-    <div className="h-full w-full bg-slate-900 flex items-center justify-center p-6 text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-amber-900/20"></div>
-        <div className="max-w-4xl w-full relative z-10 bg-slate-950/80 backdrop-blur-3xl p-10 md:p-20 rounded-[4rem] border-8 border-slate-900 shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
-            <div className="text-center mb-16">
-                <div className="inline-block bg-green-600 text-white px-6 py-2 rounded-full font-mono font-black text-sm uppercase tracking-[0.5em] mb-6 shadow-[0_0_30px_rgba(22,163,74,0.6)] animate-bounce">Mission Complete</div>
-                <h2 className="text-5xl md:text-8xl font-black font-mono uppercase tracking-tighter drop-shadow-2xl">{data.title}</h2>
-                <p className="text-slate-500 font-mono mt-4 uppercase tracking-widest text-lg font-bold">{data.subtitle}</p>
-            </div>
-            
-            <div className="space-y-6">
-                {data.content.checklist?.map((item: any, idx: number) => (
-                    <div key={idx} className="bg-slate-900/50 p-6 rounded-2xl border-2 border-slate-800 flex justify-between items-center group hover:border-green-600 transition-all">
-                        <span className="text-xl md:text-3xl font-mono font-black text-slate-300 group-hover:text-white">{item.text}</span>
-                        <div className="flex items-center gap-4">
-                            <span className="text-green-500 font-mono font-black text-sm tracking-widest">{item.reflection}</span>
-                            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(22,163,74,0.5)]">✓</div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </div>
-  );
-};
-
-// --- STUBS (Keep them for now but empty implementation) ---
-export const ChecklistSlide: React.FC<{ data: SlideData }> = () => null;
-export const MediaSlide: React.FC<{ data: SlideData }> = () => null;
-export const ComprehensionTFSlide: React.FC<{ data: SlideData }> = () => null;
-export const SpeakingSlide: React.FC<{ data: SlideData }> = () => null;
-export const QASlide: React.FC<{ data: SlideData }> = () => null;
-export const MissionLogSlide: React.FC<{ data: SlideData }> = () => null;
-export const GrammarBankSlide: React.FC<{ data: SlideData }> = () => null;
-export const ImperativesSlide: React.FC<{ data: SlideData }> = () => null;
-export const ComprehensionMCSlide: React.FC<{ data: SlideData }> = () => null;
-export const GrammarSlide: React.FC<{ data: SlideData }> = () => null;
-export const DrillSlide: React.FC<{ data: SlideData }> = () => null;
-export const MatchingSlide: React.FC<{ data: SlideData }> = () => null;
-export const RadarScanSlide: React.FC<{ data: SlideData }> = () => null;
+        data.content.folders?.forEach((folder: any)
