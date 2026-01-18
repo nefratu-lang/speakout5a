@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { SLIDES, LESSON_TITLE } from './constants';
 import { SlideType } from './types';
@@ -19,7 +18,7 @@ import {
   GrammarAnalysisSlide,
   DailyReportSlide,
   ReadingChallengeSlide,
-  LegendDossierSlide, // New Component
+  LegendDossierSlide,
   GrammarRecapSlide,
   TacticalDrillSlide,
   ClassroomGameSlide
@@ -27,24 +26,50 @@ import {
 
 const App = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false); // Tam Ekran Takibi
+  
   const currentSlide = SLIDES[currentSlideIndex];
   const progress = ((currentSlideIndex + 1) / SLIDES.length) * 100;
 
   const nextSlide = () => { if (currentSlideIndex < SLIDES.length - 1) setCurrentSlideIndex(prev => prev + 1); };
   const prevSlide = () => { if (currentSlideIndex > 0) setCurrentSlideIndex(prev => prev - 1); };
 
+  // --- FULLSCREEN TOGGLE ---
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((e) => {
+        console.error(`Fullscreen error: ${e.message}`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') nextSlide();
       else if (e.key === 'ArrowLeft') prevSlide();
     };
+
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
   }, [currentSlideIndex]);
 
   const renderSlideContent = () => {
     switch (currentSlide.type) {
-      case SlideType.COVER: return <CoverSlide data={currentSlide} />;
+      // BURADA onNext'i geçiyoruz, böylece "Tap to Initialize" çalışacak.
+      case SlideType.COVER: return <CoverSlide data={currentSlide} onNext={nextSlide} />;
       case SlideType.OBJECTIVES: return <ObjectivesSlide data={currentSlide} />;
       case SlideType.ICE_BREAKER: return <IceBreakerSlide data={currentSlide} onNext={nextSlide} />;
       case SlideType.READING: return <ReadingSlide data={currentSlide} />;
@@ -59,7 +84,7 @@ const App = () => {
       case SlideType.GRAMMAR_ANALYSIS: return <GrammarAnalysisSlide data={currentSlide} />;
       case SlideType.DAILY_REPORT: return <DailyReportSlide data={currentSlide} />;
       case SlideType.READING_CHALLENGE: return <ReadingChallengeSlide data={currentSlide} />;
-      case SlideType.LEGEND_DOSSIER: return <LegendDossierSlide data={currentSlide} />; // Wired up
+      case SlideType.LEGEND_DOSSIER: return <LegendDossierSlide data={currentSlide} />;
       case SlideType.GRAMMAR_RECAP: return <GrammarRecapSlide data={currentSlide} />;
       case SlideType.TACTICAL_DRILL: return <TacticalDrillSlide data={currentSlide} />;
       case SlideType.CLASSROOM_GAME: return <ClassroomGameSlide data={currentSlide} />;
@@ -69,14 +94,29 @@ const App = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-slate-50 font-sans overflow-hidden text-slate-800">
+    <div className="w-full h-full flex flex-col bg-slate-50 font-sans overflow-hidden text-slate-800 relative">
+      
+      {/* --- FULLSCREEN BUTTON (Sağ Üst) --- */}
+      <button 
+        onClick={toggleFullscreen}
+        className="fixed top-2 right-4 z-50 p-2 bg-white/80 hover:bg-white backdrop-blur-sm text-slate-800 rounded-full shadow-md border border-slate-200 transition-all active:scale-95"
+        title="Toggle Fullscreen"
+      >
+        {isFullscreen ? (
+           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+        ) : (
+           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        )}
+      </button>
+
       {currentSlide.type !== SlideType.COVER && (
         <header className="bg-white border-b border-slate-200 h-12 md:h-14 flex items-center justify-between px-3 md:px-8 shadow-sm shrink-0 z-20">
           <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
               <span className="text-xl text-blue-600">⚓</span>
               <h1 className="text-slate-800 font-bold font-mono text-xs md:text-base truncate uppercase tracking-widest">{LESSON_TITLE}</h1>
           </div>
-          <div className="text-slate-500 font-mono text-xs md:text-sm bg-slate-100 px-3 py-1 border border-slate-200 rounded">LOG: {currentSlideIndex + 1}/{SLIDES.length}</div>
+          {/* LOG yazısını biraz sola çektim ki full screen butonu ile çakışmasın */}
+          <div className="text-slate-500 font-mono text-xs md:text-sm bg-slate-100 px-3 py-1 border border-slate-200 rounded mr-12 md:mr-0">LOG: {currentSlideIndex + 1}/{SLIDES.length}</div>
         </header>
       )}
       {currentSlide.type !== SlideType.COVER && (
